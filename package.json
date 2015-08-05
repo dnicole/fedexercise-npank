@@ -28,7 +28,7 @@
     "npm": "2.1.14"
   },
   "scripts": {
-    "start": "node",
+    "start": "node pics.js",
     "postinstall": "gulp heroku:production"
   }
 }
