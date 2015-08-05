@@ -29,6 +29,6 @@
   },
   "scripts": {
     "postinstall": "gulp server",
-    "start": "npm start"
+    "start": "node"
   }
 }
