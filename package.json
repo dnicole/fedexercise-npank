@@ -1,0 +1,30 @@
+{
+  "name": "fedexercise",
+  "version": "1.0.0",
+  "description": "### Task Build a flickr web-app that fetches images from IBM's Flickr account via the Flickr API ([API details](https://github.com/ibmfrontend/fedexercise/blob/master/API_DETAILS.md)). You are welcome to use any technology to build it and design the layout in any way that you see fit.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ibm-frontend/fedexercise.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ibm-frontend/fedexercise/issues"
+  },
+  "homepage": "https://github.com/ibm-frontend/fedexercise",
+  "dependencies": {
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-jshint": "^1.11.2",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.2.0"
+  },
+  "scripts": {
+    "start": "node",
+    "postinstall": "gulp"
+  }
+}
