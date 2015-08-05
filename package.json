@@ -28,7 +28,7 @@
     "npm": "2.1.14"
   },
   "scripts": {
-    "start": "node",
-    "postinstall": "gulp server"
+    "postinstall": "gulp server",
+    "start": "npm start"
   }
 }
