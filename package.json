@@ -29,6 +29,6 @@
   },
   "scripts": {
     "start": "node",
-    "postinstall": "gulp production"
+    "postinstall": "gulp heroku:production"
   }
 }
