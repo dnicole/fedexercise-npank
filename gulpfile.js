@@ -1,9 +1,11 @@
 var gulp = require('gulp');
 
-var jshint = require('gulp-jshint');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var rename = require('gulp-rename');
+var jshint = require('gulp-jshint'),
+    concat = require('gulp-concat'),
+    uglify = require('gulp-uglify'),
+    rename = require('gulp-rename'),
+    connect = require('gulp-connect'),
+    express = require('express');
 
 gulp.task('lint', function() {
     return gulp.src('js/*.js')
@@ -24,8 +26,12 @@ gulp.task('watch', function() {
     gulp.watch('js/*.js', ['lint', 'scripts']);
 });
 
+gulp.task('serve', function() {
+  connect.server();
+});
+
 // Default Task
-gulp.task('default', ['lint', 'scripts', 'watch']);
+gulp.task('default', ['lint', 'scripts', 'serve', 'watch']);
 
 // I run on deploy!
 gulp.task('heroku:production', function() {

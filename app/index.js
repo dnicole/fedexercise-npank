@@ -1,11 +1,7 @@
-window.addEventListener('load',
-    function init() {
-        console.log('loaded');
-        var searchButton = document.getElementById('search');
-        searchButton.onclick = showAlert;
-    });
-    false;
-
+window.addEventListener('load', function init() {
+    var searchButton = document.getElementById('searchButton');
+    searchButton.onclick = showAlert;
+});
 
 function showAlert(e) {
     e.preventDefault();
