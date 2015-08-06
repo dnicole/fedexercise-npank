@@ -28,7 +28,7 @@
     "npm": "2.1.14"
   },
   "scripts": {
-    "start": "node js/index.js",
+    "start": "node app/server.js",
     "postinstall": "gulp heroku:production"
   }
 }
