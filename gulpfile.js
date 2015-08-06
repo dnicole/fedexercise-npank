@@ -26,8 +26,9 @@ gulp.task('watch', function() {
     gulp.watch('js/*.js', ['lint', 'scripts']);
 });
 
+// For development, but express will handle this in prod.
 gulp.task('serve', function() {
-  connect.server();
+    connect.server();
 });
 
 // Default Task

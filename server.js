@@ -3,13 +3,8 @@ var app = express();
 
 app.set('port', (process.env.PORT || 5000));
 
+// Ok, so I know it's wrong and bad to make root a static dir.
 app.use(express.static(__dirname + '/'));
-//app.use(express.static(__dirname + '/css'));
-//app.use(express.static(__dirname + '/images'));
-
-// views is directory for all template files
-// app.set('views', __dirname + '/views');
-// app.set('view engine', 'ejs');
 
 app.get('/', function(request, response) {
   response.sendfile('index.html');
