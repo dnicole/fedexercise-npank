@@ -27,7 +27,7 @@ gulp.task('watch', function() {
 // Default Task
 gulp.task('default', ['lint', 'scripts', 'watch']);
 
-// I run on deploy! 
+// I run on deploy!
 gulp.task('heroku:production', function() {
     console.log('starting up!');
 });
