@@ -69,3 +69,13 @@ img {
 #overlay img {
 	max-width: 85%;
 }
+
+@media screen and (max-width: 960px) {
+	#overlay {
+		height: 98%;
+		top: 0;
+	}
+	#overlay img {
+		max-height: 85%
+	}
+}
