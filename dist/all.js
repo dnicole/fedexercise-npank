@@ -50,8 +50,7 @@ var client = function (searched, apiKey, userId) {
     searchFlickr.onload = function() {
         // Process results
         if (searchFlickr.status >= 200 && searchFlickr.status < 400) {
-            res = JSON.parse(searchFlickr.responseXML);
-            showPics(res);
+            showPics(JSON.parse(searchFlickr.responseText));
         } else {
             var err = document.createTextNode('Sorry, something went wrong.');
             jsResults.appendChild(err);
