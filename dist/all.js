@@ -82,11 +82,18 @@ var createHtmlTemplate = function (pic) {
         e.preventDefault();
         overlay();
     });
+
     function overlay() {
         var modal = document.getElementById('overlay');
+        var modalInner = document.getElementById('modalInner');
+
         modal.style.visibility = 'visible';
+
+        var bigImg = document.createElement('img');
+        bigImg.setAttribute('src', pic.url_s);
+
         modal.addEventListener('click', function () {
-            modal.style.visiblity = (modal.style.visibility == "visible") ? "hidden" : "visible";
+            modal.style.visibility = 'hidden';
         });
     }
 };
