@@ -65,8 +65,19 @@ var createHtmlTemplate = function (pic) {
 
     // Create 'a' element, give it class for click and 'a' stuff, add it to container.
     var imgHref = document.createElement('a');
-    imgHref.setAttribute('href', pic.url_l);
-    imgHref.className = 'embiggen';
+    if (pic.url_l) {
+        imgHref.setAttribute('href', pic.url_l);
+        imgHref.className = 'embiggen';
+
+        // Click a picture that has a link to get a bigger picture!
+        imgHref.addEventListener('click', function (e) {
+            e.preventDefault();
+            overlay(pic);
+        });
+    } else {
+        // Some pics don't have url_l, we don't want those to be clickable.
+        imgHref.className = 'no-api-link';
+    }
     imgContainer.appendChild(imgHref);
 
     // Create img element, give it src and add it to the 'a'.
@@ -77,22 +88,20 @@ var createHtmlTemplate = function (pic) {
     // Stick the whole thing in jsResults div.
     jsResults.appendChild(imgContainer);
 
-    // Click a picture to get a bigger picture!
-    imgHref.addEventListener('click', function (e) {
-        e.preventDefault();
-        overlay();
-    });
 
-    function overlay() {
-        var modal = document.getElementById('overlay');
-        var modalInner = document.getElementById('modalInner');
-
+    function overlay(pic) {
+        var modal = document.getElementById('overlay'),
+            modalInner = document.getElementById('modalInner'),
+            bigImg;
         modal.style.visibility = 'visible';
+        modal.focus();
 
-        var bigImg = document.createElement('img');
-        bigImg.setAttribute('src', pic.url_s);
+        bigImg = document.createElement('img');
+        bigImg.setAttribute('src', imgHref);
+        modalInner.appendChild(bigImg);
 
         modal.addEventListener('click', function () {
+            modalInner.removeChild(bigImg);
             modal.style.visibility = 'hidden';
         });
     }
