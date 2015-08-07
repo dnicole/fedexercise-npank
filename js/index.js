@@ -38,8 +38,7 @@ var client = function (searched, apiKey, userId) {
         apiKey +
         '&user_id=' +
         userId +
-        '&format=json&nojsoncallback=1&tags=' +
-        imgTag;
+        '&format=json&nojsoncallback=1&extras=url_s,url_l';
 
     // Create AJAX request
     var searchFlickr = new XMLHttpRequest();
@@ -63,16 +62,33 @@ var client = function (searched, apiKey, userId) {
 
 var showPics = function (res) {
     var imgData = res.photos.photo;
-    for (var pic in imgData) {
-        if (imgData.hasOwnProperty(pic)) {
-            console.log('DATA', pic);
-            // var img = ;
-            // var imgHref = '<a class="jsPic" href="#"><img src="img"></a>';
-            // jsResults.appendChild(imgHref);
-
-        } else {
-            console.log('RESPONSE', res);
-        }
-    }
+    imgData.forEach(function(pic) {
+        createHtmlTemplate(pic);
+    });
 };
 
+var createHtmlTemplate = function (pic) {
+    // Create container for pic
+    var imgContainer = document.createElement('div');
+    imgContainer.className = 'picture';
+
+    // Create 'a' element, give it class for click and 'a' stuff, add it to container.
+    var imgHref = document.createElement('a');
+    imgHref.setAttribute('href', pic.url_l);
+    imgHref.className = 'jsPic';
+    imgContainer.appendChild(imgHref);
+
+    // Create img element, give it src and add it to the 'a'.
+    var imgInner = document.createElement('img');
+    imgInner.setAttribute('src', pic.url_s);
+    imgHref.appendChild(imgInner);
+
+    // Create 'p' for description and add it to container.
+    var imgDescription = document.createElement('p');
+    imgDescription.className = 'description';
+    imgDescription.innerText = pic.title;
+    imgContainer.appendChild(imgDescription);
+
+    // Stick the whole thing in results div.
+    jsResults.appendChild(imgContainer);
+};
