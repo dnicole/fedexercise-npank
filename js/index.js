@@ -62,6 +62,17 @@ var client = function (searched, apiKey, userId) {
 };
 
 var showPics = function (res) {
-    console.log(res);
+    var imgData = res.photos.photo;
+    for (var pic in imgData) {
+        if (imgData.hasOwnProperty(pic)) {
+            console.log('DATA', pic);
+            // var img = ;
+            // var imgHref = '<a class="jsPic" href="#"><img src="img"></a>';
+            // jsResults.appendChild(imgHref);
+
+        } else {
+            console.log('RESPONSE', res);
+        }
+    }
 };
 
