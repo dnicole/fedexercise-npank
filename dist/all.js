@@ -1,5 +1,4 @@
 var jsSearchButton,
-    jsSearchField,
     imgTag,
     jsResults,
     apiKey = 'a5e95177da353f58113fd60296e1d250',
@@ -7,31 +6,17 @@ var jsSearchButton,
 
 window.addEventListener('load', function init() {
     jsSearchButton = document.getElementById('jsSearchButton');
-    jsSearchField = document.getElementById('jsSearchField');
     jsResults = document.getElementById('jsResults');
     jsSearchButton.addEventListener('click', callSearchFlickr);
 });
 
 function callSearchFlickr(e) {
     e.preventDefault();
-
-    var searched = jsSearchField.value;
-
-    if (jsResults.index >= 1) {
-        console.log('clearing old results');
-        jsResults.clear();
-    } else {
-        console.log('nothing to clear');
-    }
-
-    jsSearchField.value = '';
-
-    client(searched, apiKey, userId);
+    client(apiKey, userId);
 }
 
-var client = function (searched, apiKey, userId) {
+var client = function (apiKey, userId) {
     var res;
-    imgTag = searched;
 
     // Hello giant string!
     var endpoint = 'https://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos&api_key=' +
@@ -72,10 +57,16 @@ var createHtmlTemplate = function (pic) {
     var imgContainer = document.createElement('div');
     imgContainer.className = 'picture';
 
+    // Create 'p' for description and add it to container.
+    var imgDescription = document.createElement('p');
+    imgDescription.className = 'title';
+    imgDescription.innerText = pic.title;
+    imgContainer.appendChild(imgDescription);
+
     // Create 'a' element, give it class for click and 'a' stuff, add it to container.
     var imgHref = document.createElement('a');
     imgHref.setAttribute('href', pic.url_l);
-    imgHref.className = 'jsPic';
+    imgHref.className = 'embiggen';
     imgContainer.appendChild(imgHref);
 
     // Create img element, give it src and add it to the 'a'.
@@ -83,12 +74,20 @@ var createHtmlTemplate = function (pic) {
     imgInner.setAttribute('src', pic.url_s);
     imgHref.appendChild(imgInner);
 
-    // Create 'p' for description and add it to container.
-    var imgDescription = document.createElement('p');
-    imgDescription.className = 'description';
-    imgDescription.innerText = pic.title;
-    imgContainer.appendChild(imgDescription);
-
-    // Stick the whole thing in results div.
+    // Stick the whole thing in jsResults div.
     jsResults.appendChild(imgContainer);
+
+    // Click a picture to get a bigger picture!
+    imgHref.addEventListener('click', function (e) {
+        e.preventDefault();
+        overlay();
+    });
+    function overlay() {
+        var modal = document.getElementById('overlay');
+        modal.style.visibility = 'visible';
+        modal.addEventListener('click', function () {
+            modal.style.visiblity = (modal.style.visibility == "visible") ? "hidden" : "visible";
+        });
+    }
 };
+
