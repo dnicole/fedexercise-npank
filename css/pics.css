@@ -23,8 +23,9 @@ a:hover {
 }
 
 .button {
-	display: inline-block;
+	display: block;
 	min-width: 100px;
+	max-width: 500px;
 	padding: 8px;
 	color: #b494e6;
 	border: 1px solid #b494e6;
@@ -32,7 +33,7 @@ a:hover {
 	outline: none;
 	text-decoration: none;
 	border-radius: 3px;
-	margin: 25px;
+	margin: 25px auto;
 }
 .button:hover,
 .button:active {
@@ -40,9 +41,21 @@ a:hover {
 	color: #1f1f1f;
 }
 
+.do-over {
+	position: relative;
+	top: -65px;
+	margin-bottom: 0;
+}
+
 .center-align {
 	text-align: center;
 }
+
+.picture {
+	display: inline-block;
+	margin: 10px;
+}
+
 img {
 	border: 2px solid #eee;
 	border-radius: 3px;

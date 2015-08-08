@@ -50,6 +50,30 @@ var showPics = function (res) {
     imgData.forEach(function(pic) {
         createHtmlTemplate(pic);
     });
+    jsSearchButton.style.visibility = 'hidden';
+    createClearButton();
+};
+
+var createClearButton = function () {
+    var clearButton;
+    var pageContain = document.getElementById('container');
+    if (clearButton === undefined) {
+        clearButton = document.createElement('a');
+        clearButton.className = 'button do-over';
+        clearButton.setAttribute('href', '#');
+        clearButton.innerText = 'Start Over';
+    }
+
+    var insertButton = pageContain.insertBefore(clearButton, jsResults);
+
+    clearButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        while(jsResults.firstChild) {
+            jsResults.removeChild(jsResults.firstChild);
+        }
+        clearButton.remove();
+        jsSearchButton.style.visibility = 'visible';
+    });
 };
 
 var createHtmlTemplate = function (pic) {
